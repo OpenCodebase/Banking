@@ -4,15 +4,20 @@ namespace OpenCodebase.Banking.Tests.Accounts
 {
     public class CreateSavingsAccountTests
     {
+        /// <summary>
+        /// This test verifies the simplest account can be created.
+        /// This only needs an account holder identifier and
+        /// initialises an account with a zero balance.
+        /// </summary>
         [Fact]
-        public async Task GivenAUserId_CanCreateANewSavingsAccount()
+        public void GivenAUserId_CanCreateANewSavingsAccount()
         {
             // Arrange
             var userId = "Test123";
 
             // Act
             // Creates a SavingsAccount with a string type Identifier
-            var newSavingsAccount = new SavingsAccount<string>(accountHolderId: userId);
+            var newSavingsAccount = SavingsAccount<string>.New(accountHolderId: userId);
 
             // Assert
             // Assert account object was instantiated

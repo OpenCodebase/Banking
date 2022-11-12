@@ -2,17 +2,27 @@ namespace OpenCodebase.Banking.Accounts.Savings
 {
     public class SavingsAccount<TUserIdentity> : AccountBase<TUserIdentity>
     {
-        public SavingsAccount(
+
+        /// <summary>
+        /// For serialisers and factory methods only
+        /// </summary>
+        private SavingsAccount() {}
+
+        public static SavingsAccount<TUserIdentity> New(
             TUserIdentity accountHolderId
-        ) : base()
+        )
         {
-            base.AccountHolderId = accountHolderId;
+            return new SavingsAccount<TUserIdentity>
+            {
+                AccountHolderId = accountHolderId
+            };
         }
 
         public void Deposit(decimal amountToDeposit)
         {
             this.ValidateDeposit(amountToDeposit);
 
+            // TODO: Add events where enabled
             this.Balance += amountToDeposit;
         }
 
